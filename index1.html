@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+    	*{margin: 0;padding: 0;}
+    	html,body{width: 100%;height: 100%;}
+    	.top{background-color: darkgrey;padding-right: 20px;height: 20%;position: relative;}
+    	.top input{width: 100%;
+					border: none;background-color: #A9A9A9;color: #fff;
+					font-size: 100px;text-align: right;
+					padding-top: 40px;
+					position: absolute;
+					bottom: 0px;
+					color: #fff;
+    				}
+    	.num{width: 100%;height: 80%;
+    		background-color: antiquewhite;
+    		font-size:0 ;
+    		}	
+    	.num input{border: none;
+    				width: 25%;height: 20%;border: 1px solid darkgrey;
+    				font-size: 50px;
+    				}
+    	.bgo{background-color: orange;}	
+    
+    </style>
+</head>
+
+<body>
+    	<div class="top">
+    		<input type="button" name="" id="show" value="" />
+    	</div>
+        <div class="num">
+        	<input type="button" value="AC" class="sum">
+        	<input type="button" id="+/-" value="+/-" />
+			<input type="button" id="%" value="%" />
+			<input type="button"  value="/" class="bgo">
+			<input type="button" class="btn" value="7" id="seven">
+	        <input type="button" class="btn" value="8" id="eight">
+	        <input type="button" class="btn" value="9" id="night">
+	        <input type="button" value="*" class="bgo">
+	        <input type="button" class="btn" value="4" id="four">
+	        <input type="button" class="btn" value="5" id="five">
+	        <input type="button" class="btn" value="6" id="six">
+	        <input type="button" value="-" class="bgo">
+        	<input type="button" class="btn" value="1" id="one">
+	        <input type="button" class="btn" value="2" id="two">
+	        <input type="button" class="btn" value="3" id="three">
+	        <input type="button" value="+" class="bgo">
+	        <input class="w" name="num1" style="width: 50%;text-align: left;padding-left: 10px;" type="button" id="o" value="0" />
+	        <input type="button" value="." class="sum">
+	        <input type="button" value="=" class="bgo">
+	       
+        </div>
+        
+   
+    <script>
+    (function() {
+        click();
+    })();
+
+    function $(id) {
+        return document.getElementById(id)
+    }
+
+    function click() {
+        var ans = "";
+        var clear = false;
+        var calc = "";
+        var el = document.getElementsByTagName('input');
+        
+        for (var i = el.length - 1; i >= 0; i--) {
+            el[i].onclick = function() {
+                var text = this.value;
+                console.log(text);
+                if (parseInt(text, 10) == text || text === "." || text === "/" || text === "*" || text === "-" || text === "+" || text === "%") {
+                    if (clear === false) {
+                        calc += text;
+                        $("show").value = calc;
+                    } else {
+                        calc = text;
+                        $("show").value = calc;
+                        clear = false;
+                    }
+                } else if (text === "AC") {
+                    calc = "";
+                    $("show").value = "";
+                } 
+//              else if (text === "CE") {
+//                  calc = calc.slice(0, -1);
+//                  $("show").value = calc;
+//                  console.log(calc)
+//              }
+                else if (text == "=") {
+                    ans = eval(calc);
+                     $("show").value =ans;
+                    clear = true;
+                }
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>
